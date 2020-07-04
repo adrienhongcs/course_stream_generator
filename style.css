@@ -3,7 +3,10 @@
 * {
     font-family: Caveat;
     box-sizing: border-box;
-    background-color: beige;
+    background-color: gainsboro;
+}
+html{
+    background-color: gainsboro;
 }
 .main{
     padding: 5px;
@@ -12,6 +15,8 @@
     height:85%;
     border: solid black;
     border-bottom: none;
+    background-color: ;
+  
 }
 .graph {
     width:65%;
@@ -30,6 +35,7 @@
     width: 35%;
     border: dotted 2px;
     padding: 5px;
+
  }
 .row_header {
     text-align: center;
@@ -83,6 +89,7 @@
     padding: 5px;
     width:100%;
     border-top:solid black;
+    background-color: gainsboro;
 }
 .footer ul{
     text-align: right;
