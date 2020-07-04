@@ -124,4 +124,4 @@ function update(courses){
     return mergesort(courses)
 }
 
-export {Course, addEdge,addVertex,indexOfName,update,mergesort}
+export {addEdge,addVertex,indexOfName,update,mergesort}

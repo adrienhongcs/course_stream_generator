@@ -1,4 +1,4 @@
-import {Course, addEdge,addVertex,indexOfName,update,mergesort} from './graph.js'
+import {addEdge,addVertex,indexOfName,update,mergesort} from './graph.js'
 
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready)
@@ -59,6 +59,7 @@ function removeEdge(buttonClicked){
 }
 
 function checkRemoved(name){
+    if (courses.length == 0) return
     let rows = document.getElementsByClassName('row')
     for (let i=0;i<rows.length;i++){
         let course =  rows[i].getElementsByClassName('course')[0]
@@ -163,7 +164,6 @@ function addCourse(newCourse){
 }
 
 function graph(){
-    console.log(courses)
     replaceGraph()
     graphRow()
     let row = document.getElementsByClassName('row_graph')
