@@ -1,5 +1,15 @@
 class Course {
-
+    /* 
+    instance of the class Course has the following attributes 
+    vertex is the name of the course
+    outEdges is the list of prerequisite courses
+    inEdges is a list of courses who have this as a prerequisite
+    depth is the position of the course in the graph, the more dependent on other courses (prerequisites)
+    the deeper the depth 
+    visited indicates if the course has been visited, can either be "red" or "blue"
+    Switching between two colors as opposed to "truth" and "false" eliminates the need to reset 
+    all courses visited attribute to "false" before visiting the graph 
+    */
     constructor(name){
         this.vertex = name
         this.outEdges = []
@@ -13,6 +23,7 @@ function addEdge(course, prereq){
     course.outEdges.push(prereq)
     prereq.inEdges.push(course)
 }
+// makes the depth the maximum of the depth of this prerequisites + 1
 function addDepth(course){   
     course.visited = alternate(course.visited)
     if (course.outEdges.length == 0) {
@@ -31,7 +42,7 @@ function addDepth(course){
     }
     course.depth = maxDepth+1
 }
-
+//makes the depth the minimum depth of courses dependent on this - 1
 function checkDepth(course){
     course.visited = alternate(course.visited)
     if (course.inEdges.length == 0) return
@@ -47,8 +58,9 @@ function checkDepth(course){
     }
     course.depth = minDepth-1
 }
-
+// creates an instance of Course and adds it to a list of Course
 function addVertex(name,courses){
+    // if the course is already in the list courses, then the method ends 
     for (let i =0;i<courses.length;i++){
         if (name==courses[i].vertex)
         return courses[i]
@@ -57,12 +69,14 @@ function addVertex(name,courses){
     courses.push(course)
     return course
 }
+// alternate the visited attribute of a Course object
 function alternate(color){
     if (color=="red"){
         return "blue"
     } 
     return "red"
 }
+// takes as input the vertex attribute of a Course object and returns the index of its position in the list of Course
 function indexOfName(name,courses){
     for (let i = 0;i<courses.length;i++){
         if (name == courses[i].vertex){
@@ -71,6 +85,7 @@ function indexOfName(name,courses){
     }
     return -1 
 }
+// merges two list of Course into an ordered list from smaller to bigger according to depth 
 function merge(list1,list2){
     let result = []
     let index1 =0;
@@ -95,6 +110,7 @@ function merge(list1,list2){
     }
     return result
 }
+//applies merge recursively to a list of Course, returns the same list sorted
 function mergesort(list){
     if (list.length==1){
         return list
@@ -106,7 +122,7 @@ function mergesort(list){
     list2 = mergesort(list2)
     return merge(list1,list2)
 }
-
+// takes a list of Course, applies addDepth then checkDepth, finally returns the list sorted
 function update(courses){
     if (courses.length ==0) return
     let visited = alternate(courses[0].visited)
