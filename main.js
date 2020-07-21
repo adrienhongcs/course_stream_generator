@@ -125,7 +125,7 @@ function addPrereq(newPrereq,buttonParent){
     let name = course.innerText
     let index = indexOfName(name,courses)
     let edge = addVertex(newPrereq,courses)
-    addEdge(courses[index1],edge)
+    addEdge(courses[index],edge)
     courses = update(courses)
     graph()
 }
@@ -172,6 +172,7 @@ function addCourse(newCourse){
 }
 // updates the graph displayed on screen
 function graph(){
+    console.log(courses)
     replaceGraph()
     graphRow()
     let row = document.getElementsByClassName('row_graph')
